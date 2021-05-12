@@ -18,21 +18,6 @@ const App = () => {
   );
 }
 
-const PageBar = styled.ul`
-    list-style: none;
-    padding-left: 30px;
-`
-
-const PageNumber = styled.li`
-    float: left;
-    margin-left: 10px;
-`
-
-const PageButton = styled.button`
-    margin-left: 10px;
-`
-
-
 const Page = () => {
 
     const [bar, setBar] = useState([1,2,3,4,5]);
@@ -53,7 +38,7 @@ const Page = () => {
     const pageMenu = [...bar].map(
         (pageNum) => (
             <PageNumber key={pageNum.toString()}>
-                <PageButton href={"page="+pageNum} onClick={()=> setPageNum(pageNum) }>{pageNum}</PageButton>
+                <PageButton href={"page="+pageNum} onClick={()=> setPageNum(pageNum)}>{pageNum}</PageButton>
             </PageNumber>
         )
     )
@@ -69,5 +54,19 @@ const Page = () => {
     )
 
 }
+
+const PageBar = styled.ul`
+    list-style: none;
+    padding-left: 30px;
+`
+
+const PageNumber = styled.li`
+    float: left;
+    margin-left: 10px;
+`
+
+const PageButton = styled.button`
+    margin-left: 10px;
+`
 
 export default App;
