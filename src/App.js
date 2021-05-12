@@ -12,8 +12,8 @@ const App = () => {
     <div className="App">
       <h1>Hello {item}</h1>
       <button onClick={incrementItem}>increment</button>
-      <button onClick={decrementItem}>decrement</button>'
-        <Page />
+      <button onClick={decrementItem}>decrement</button>
+    <Page />
     </div>
   );
 }
@@ -28,27 +28,46 @@ const PageNumber = styled.li`
     margin-left: 10px;
 `
 
+const PageButton = styled.button`
+    margin-left: 10px;
+`
+
 
 const Page = () => {
+
     const [bar, setBar] = useState([1,2,3,4,5]);
 
     const pageUp = () => setBar(
-        bar.map(page => page + 1)
+        [...bar].map(page => page + 1)
     )
 
-    const pageDown = () => setBar(
-        bar.map(page => page - 1)
+    const pageDown = () => {
+        if(bar[0] === 1) { return ; }
+        setBar([...bar].map(page => page - 1));
+    }
+
+    const setPageNum = (pageNo) => {
+        setBar(bar.map((page, index) => pageNo+index));
+    }
+
+    const pageMenu = [...bar].map(
+        (pageNum) => (
+            <PageNumber key={pageNum.toString()}>
+                <PageButton href={"page="+pageNum} onClick={()=> setPageNum(pageNum) }>{pageNum}</PageButton>
+            </PageNumber>
+        )
     )
 
     return (
         <div className="Page">
-            <PageBar key={bar.toString()}>
+            <PageBar>
                 <PageNumber><button onClick={pageDown}>{'<<'}</button></PageNumber>
-                <PageNumber>{bar}</PageNumber>
+                {pageMenu}
                 <PageNumber><button onClick={pageUp}>{'>>'}</button></PageNumber>
             </PageBar>
         </div>
     )
+
 }
 
 export default App;
