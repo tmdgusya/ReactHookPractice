@@ -38,7 +38,7 @@ const Page = () => {
     const pageMenu = [...bar].map(
         (pageNum) => (
             <PageNumber key={pageNum.toString()}>
-                <PageButton href={"page="+pageNum} onClick={()=> setPageNum(pageNum)}>{pageNum}</PageButton>
+                <PageButton onClick={()=> setPageNum(pageNum)}>{pageNum}</PageButton>
             </PageNumber>
         )
     )
